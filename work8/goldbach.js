@@ -1,30 +1,29 @@
-function goldbach(cx){
+function goldbach() {
+    var value = document.getElementById('odd').value
+    if(value%2!==0){
+        alert("请输入一个偶数")
+    }
     let goldbach = document.getElementById('goldbach')
-    let odd = parseInt(document.getElementById('odd').value)
-    if(isNaN(odd)){
-        alert('请输入数字')
-        return false
-    }
-    goldbach.value = cx(odd)
-}
-function goldbach(cx){
-    var sum=0;
-    for(var i=1;i<=cx;i++){
-        if(cx % i ==0){
-            sum++;
+    var arr =[]
+    var a = 0;
+    for(var i=2;i<=value;i++){
+        a = 0
+        for(var j=2;j<i;j++){
+            if(i%j==0){
+                a++
+            }
+        }
+        if(a==0){
+            arr.push(i)
         }
     }
-    if(sum==2){
-        return true;
-    }else{
-        return false;
+    var str = ''
+    for(let i=0;i<(arr.length)/2;i++){
+       for(let j=0;j<arr.length;j++){
+           if((arr[i]+arr[j])===Number(value)){
+               str += '<div>'+value+"可以拆分为两个素数"+arr[i]+"与"+arr[j]+"的和"+ '</div>'
+           }
+       }
     }
-}
-function goldbach(cx){
-    for(var i=2;i<cx-2;i++){
-        var j = cx -i;
-        if(goldbach(i)&&goldbach(j)){
-            console.log(a+"可以拆分为两个质数"+ i+"与"+j+"的和");
-        }
-    }
+    goldbach.innerHTML = str
 }
